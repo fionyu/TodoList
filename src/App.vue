@@ -1,20 +1,32 @@
 <template>
   <div id="app">
-    <HeaderView></HeaderView>
+    <HeaderView :msg="title"></HeaderView>
     <img width="25%" src="./assets/logo.png">
-    <Listview/>
+    <ListView @myMsg="getData"></ListView>
   </div>
 </template>
 
 <script>
-import Listview from "./components/List";
+// import components
+import ListView from "./components/List";
 import HeaderView from "./components/Header";
 
 export default {
   name: "App",
+  // register components
   components: {
-    Listview,
+    ListView,
     HeaderView
+  },
+  data() {
+    return {
+      title: "TodoList"
+    };
+  },
+  methods: {
+    getData(msg) {
+      console.log("dad is here" + msg);
+    }
   }
 };
 </script>

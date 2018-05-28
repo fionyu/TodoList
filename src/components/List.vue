@@ -2,7 +2,7 @@
 <template>
   <div class="view">
     <h1 class="title">{{title}}</h1>
-    <input type="text" @keyup.enter="addData">
+    <input v-model="newStr" type="text" @keyup.enter="addData" >
     <ul>
       <li v-for="item in items" 
       :key = "item.text"
@@ -43,7 +43,18 @@ export default {
     toggleFinish(item) {
       item.isFineshed = !item.isFineshed;
     },
-    addData() {}
+    addData() {
+      this.items.push({
+        text: this.newStr,
+        isFineshed: false
+      });
+
+      // 將input data傳給app
+      // myMsg是事件命名
+      this.$emit("myMsg", this.newStr);
+
+      this.newStr = "";
+    }
   }
 };
 </script>
