@@ -1,17 +1,20 @@
 <template>
   <div id="app">
+    <HeaderView></HeaderView>
     <img width="25%" src="./assets/logo.png">
-    <HelloWorld/>
+    <Listview/>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
+import Listview from "./components/List";
+import HeaderView from "./components/Header";
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    Listview,
+    HeaderView
   }
 };
 </script>
