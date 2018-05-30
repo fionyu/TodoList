@@ -25,7 +25,7 @@ export default {
         // 代辦事項
         {
           text: "今天晚上18:00跑步",
-          isFineshed: true
+          isFineshed: false
         },
         {
           text: "今天早上10:00吃早餐",
@@ -37,38 +37,33 @@ export default {
   methods: {
     toggleFinish(item) {
       item.isFineshed = !item.isFineshed;
+    },
+    getStr2Items() {
+      this.$bus.$on("getStr", data => {
+        this.items.push({
+          text: data,
+          isFineshed: false
+        });
+      });
     }
-    // getStr2Items() {
-    //   this.$bus.$on("getStr", data => {
-    //     this.items.push({
-    //       text: data,
-    //       isFineshed: false
-    //     });
-    //   });
-    // }
+  },
+  mounted() {
+    this.getStr2Items();
   }
-  // mounted() {
-  //   this.getStr2Items();
-  // }
 };
 </script>
 
 <style>
-.view {
-  width: 400px;
-  margin: 20px auto;
-}
-.view .title {
+.title {
   border-bottom: 1px solid gray;
 }
-.view ul {
+ul {
   /* 讓列表前面的小點消失 */
   padding: 0;
   margin: 0;
 }
-.view ul li {
+ul li {
   /* 列表樣式 */
-  /* margin: 10px 0; */
   cursor: pointer;
   padding: 12px 8px 12px 40px;
   background: #eee;
@@ -81,15 +76,31 @@ export default {
   -moz-user-select: none;
   user-select: none;
 }
-.view ul li:nth-child(odd) {
+ul li:nth-child(odd) {
   /* 讓列表單數列顏色改變(條紋效果) */
   background: #f9f9f9;
 }
-.view ul li:hover {
+ul li:hover {
+  /* 滑鼠經過變色 */
   background: #ddd;
 }
 .finish {
-  color: grey;
+  background: #888;
+  color: #fff;
   text-decoration: line-through;
+}
+.finish::before {
+  content: "";
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  /* 只有下面和右邊的線 */
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  /* 旋轉45度 */
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
 }
 </style>

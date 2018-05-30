@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <h2>{{msg}}</h2> 
-    <input v-model="newStr" type="text" @keyup.enter="addData" >
+    <input v-model="newStr" type="text" @keyup.enter="addData" placeholder="What do you want to do?">
   </div>
 </template>
 <script>
@@ -21,8 +21,8 @@ export default {
   },
   methods: {
     addData() {
-      // this.$bus.$emit("getStr", this.newStr);
-      // this.newStr = "";
+      this.$bus.$emit("getStr", this.newStr);
+      this.newStr = "";
     }
   }
 };
