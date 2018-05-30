@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <HeaderView :msg="title"></HeaderView>
-    <img width="25%" src="./assets/logo.png">
+    <HeaderView></HeaderView>
+    <!--<HeaderView :msg="title"></HeaderView>-->
+    <!--<img width="25%" src="./assets/logo.png">-->
     <ListView @myMsg="getData"></ListView>
   </div>
 </template>
@@ -20,7 +21,7 @@ export default {
   },
   data() {
     return {
-      title: "TodoList"
+      title: "Todo List!"
     };
   },
   methods: {
