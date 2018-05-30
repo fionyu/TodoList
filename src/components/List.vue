@@ -69,6 +69,7 @@ ul li {
   background: #eee;
   font-size: 18px;
   transition: 0.2s;
+  position: relative;
 
   /* 讓列表的文字不能被反白 */
   -webkit-user-select: none;
@@ -85,7 +86,8 @@ ul li:hover {
   background: #ddd;
 }
 .finish {
-  background: #888;
+  /* !important 強制使用此style蓋過其他class */
+  background: #888 !important;
   color: #fff;
   text-decoration: line-through;
 }
