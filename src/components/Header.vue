@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      title: "title area"
+      newStr: ""
     };
   },
   //父組件傳參數給子組件
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     addData() {
-      this.$bus.$emit("getStr", this.newStr);
+      this.$bus.$emit("getStr", "sssss");
       this.newStr = "";
     }
   }

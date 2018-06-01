@@ -1,12 +1,13 @@
 <template>
   <div class="view">
-    <div class="container">
-      <ul class="list-group">
+    <div>
+      <ul>
         <li v-for="item in items" 
         :key = "item.text"
-        v-bind:class="{'finish':item.isFineshed}"
+        v-bind:class="{finish:item.isFineshed,close:item.isClose}"
         @click="toggleFinish(item)">
           {{item.text}}
+          <span :class="{closeSymbol:true}" @click="toggleClose(item)">×</span>
         </li>
       </ul>
     </div>
@@ -25,11 +26,13 @@ export default {
         // 代辦事項
         {
           text: "今天晚上18:00跑步",
-          isFineshed: false
+          isFineshed: false,
+          isClose: false
         },
         {
           text: "今天早上10:00吃早餐",
-          isFineshed: false
+          isFineshed: false,
+          isClose: false
         }
       ]
     };
@@ -37,6 +40,9 @@ export default {
   methods: {
     toggleFinish(item) {
       item.isFineshed = !item.isFineshed;
+    },
+    toggleClose(item) {
+      item.isClose = true;
     },
     getStr2Items() {
       this.$bus.$on("getStr", data => {
@@ -104,5 +110,14 @@ ul li:hover {
   transform: rotate(45deg);
   height: 15px;
   width: 7px;
+}
+.closeSymbol {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+.close {
+  display: none;
 }
 </style>
